@@ -106,12 +106,13 @@ package-deb:
 
 changelog-deb:
 	@PACKAGE=$(NAME); \
-	$$(grep '^Version:' packaging/deb/$(ARCH)/control | cut -d' ' -f2); \
+	VERSION=$$(grep "^version" Cargo.toml | head -n1 | cut -d'"' -f2); \
+	FULL_VERSION=$${VERSION}-$(REVISION); \
 	EMAIL="rafex@rafex.dev"; \
 	FULLNAME="Raúl González"; \
 	DATE=$$(date -R); \
 	MESSAGE=$$(git log -1 --pretty=format:'  * %s'); \
-	echo "$$PACKAGE ($$VERSION-1) stable; urgency=medium\n\n$$MESSAGE\n\n -- $$FULLNAME <$$EMAIL>  $$DATE\n" > packaging/deb/$(ARCH)/changelog
+	echo "$$PACKAGE ($$FULL_VERSION) stable; urgency=medium\n\n$$MESSAGE\n\n -- $$FULLNAME <$$EMAIL>  $$DATE\n" > packaging/deb/$(ARCH)/changelog
 
 changelog-md:
 	@echo "# Changelog" > CHANGELOG.md
@@ -140,10 +141,11 @@ lint:
 		echo "❌ Debes especificar ARCH=amd64 o ARCH=arm64"; \
 		exit 1; \
 	fi
-	@VERSION=$(shell grep '^version' Cargo.toml | head -n1 | cut -d'"' -f2); \
-	REVISION=2+rafex; \
-	FULL_VERSION=$$VERSION-$$REVISION; \
-	FILE="$(NAME)_$$FULL_VERSION_$(ARCH).deb"; \
+	pwd
+	ls -la
+	@VERSION=$$(grep "^version" Cargo.toml | head -n1 | cut -d'"' -f2); \
+	FULL_VERSION=$${VERSION}-$(REVISION); \
+	FILE=$${file:-$(NAME)_$${FULL_VERSION}_$${ARCH}.deb}; \
 	if [ -f $$FILE ]; then \
 		echo "🔍 Ejecutando lintian sobre $$FILE"; \
 		lintian $$FILE; \
