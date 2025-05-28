@@ -1,6 +1,6 @@
 # curp_generator
 
-> Versión actual: 0.1.0-1+rafex
+> Versión actual: 0.1.1-2+rafex
 
 Este proyecto implementa en Rust el algoritmo para **generar CURP válidas estructuralmente**, conforme a lo estipulado en el [Instructivo Normativo para la Asignación de la Clave Única de Registro de Población](https://sre.gob.mx/component/phocadownload/category/2-marco-normativo?download=1116:instructivo-normativo-para-la-asignacion-de-la-clave-unica-de-registro-de-poblacion-dof-18-10-2021-texto-vigente), publicado oficialmente en el Diario Oficial de la Federación (DOF) el 18 de octubre de 2021.
 
@@ -25,9 +25,12 @@ Este software es únicamente con fines educativos y de prueba. La CURP generada 
 ## Instalación (vía APT)
 
 ```bash
-echo "deb [trusted=yes] https://repository.rafex.app/debian stable main" > /etc/apt/sources.list.d/rafex.list
+# Importar la clave pública del repositorio
+curl -fsSL https://repository.rafex.app/pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/rafex-archive-keyring.gpg
+# Agregar el repositorio APT usando la clave
+echo "deb [signed-by=/usr/share/keyrings/rafex-archive-keyring.gpg] https://repository.rafex.app/debian stable main" | sudo tee /etc/apt/sources.list.d/rafex.list > /dev/null
 sudo apt update
-sudo apt install curp-generator
+sudo apt install libcurp-generator0
 ```
 
 ## Verificación opcional de integridad y autenticidad
@@ -35,22 +38,27 @@ sudo apt install curp-generator
 Si descargaste el `.deb` directamente, puedes verificar su integridad y firma:
 
 ```bash
-curl -O https://repository.rafex.app/debian/curp-generator_0.1.0-1+rafex_amd64.deb
-curl -O https://repository.rafex.app/debian/curp-generator_0.1.0-1+rafex_amd64.deb.sig
+curl -O https://repository.rafex.app/debian/libcurp-generator0_0.1.1-2+rafex_amd64.deb
+curl -O https://repository.rafex.app/debian/libcurp-generator0_0.1.1-2+rafex_amd64.deb.sig
 curl -O https://repository.rafex.app/pubkey.asc
 
 # Importar la clave pública
 gpg --import pubkey.asc
 
 # Verificar la firma
-gpg --verify curp-generator_0.1.0-1+rafex_amd64.deb.sig curp-generator_0.1.0-1+rafex_amd64.deb
+gpg --verify libcurp-generator0_0.1.1-2+rafex_amd64.deb.sig libcurp-generator0_0.1.1-2+rafex_amd64.deb
+```
+
+```bash
+curl -O https://repository.rafex.app/debian/libcurp-generator0_0.1.1-2+rafex_amd64.deb.sha256
+sha256sum -c libcurp-generator0_0.1.1-2+rafex_amd64.deb.sha256
 ```
 
 También puedes verificar el hash SHA256 (si está disponible):
 
 ```bash
-curl -O https://repository.rafex.app/debian/curp-generator_0.1.0-1+rafex_amd64.deb.sha256
-sha256sum -c curp-generator_0.1.0-1+rafex_amd64.deb.sha256
+curl -O https://repository.rafex.app/debian/libcurp-generator0_0.1.1-2+rafex_amd64.deb.sha256
+sha256sum -c libcurp-generator0_0.1.1-2+rafex_amd64.deb.sha256
 ```
 
 ## Verificación de instalación
