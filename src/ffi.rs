@@ -1,5 +1,4 @@
-use crate::curp_generator::logic::generar_curp;
-use crate::curp_generator::logic::DatosPersonales;
+use crate::generator::{generar_curp, DatosPersonales};
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
 
