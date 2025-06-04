@@ -14,6 +14,11 @@ LIB_CURP_VERSION=$(LIB_CURP).so.0.1.1
 
 .PHONY: all build clean cbindgen install install-tools
 
+# Pruebas TEST_PREFIX acota las pruebas a un prefijo
+test:
+	cargo test "${TEST_PREFIX}" -- --color always --nocapture
+
+
 # Compila el proyecto en modo release
 build:
 	cargo build --release
