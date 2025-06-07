@@ -1,0 +1,13 @@
+[package]
+name = "libcurpgenerator"
+version = "0.1.1"
+edition = "2021"
+authors = ["rafex"]
+
+[lib]
+name = "curpgenerator"
+crate-type = ["cdylib"]
+
+[dependencies]
+generator = { path = "../generator" }
+glib = "0.20.10"

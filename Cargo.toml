@@ -1,11 +1,16 @@
-[package]
-name = "curp_generator"
-version = "0.1.1"
-edition = "2021"
-authors = ["rafex"]
+[workspace]
 
-[lib]
-name = "curp_generator"
-crate-type = ["cdylib"]
+members = [
+    "generator",
+    "libcurpgenerator",
+]
 
-[dependencies]
+[profile.release]
+debug = true
+strip = "none"
+# Link-time optimization (LTO) is a whole-program optimization technique that
+# can improve runtime speed by 10-20% or more, and also reduce binary size,
+# at the cost of worse compile times. It comes in several forms.
+# https://nnethercote.github.io/perf-book/build-configuration.html
+lto = true
+
