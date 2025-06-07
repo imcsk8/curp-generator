@@ -1,0 +1,3 @@
+[submodule "curp-commons"]
+	path = curp-commons
+	url = git@github.com:rafex/curp-commons.git
