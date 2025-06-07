@@ -42,4 +42,16 @@ Este proyecto utiliza **Gitflow** como modelo de gestión de ramas. Las ramas pr
 
 Además, se utiliza un sistema de etiquetas (*tags*) para versionado, siguiendo [Semantic Versioning (SemVer)](https://semver.org/). Cada versión se etiqueta como `vX.Y.Z` (por ejemplo, `v1.2.0`).
 
+```
+               Gitflow
+╔══════════╗     ╔══════════╗
+║  Feature ║───▶║  Develop ║
+╚══════════╝    ╱╚══════════╝
+               ╱     │
+╔══════════╗   ╱     ▼
+║  Hotfix  ║◀─┘   ╔══════╗    ╔══════╗
+╚══════════╝      ║ Main ║-──▶║ Tags ║
+                  ╚══════╝    ╚══════╝
+```
+
 Si tienes dudas, abre un Issue o escribe al mantenedor del proyecto.
