@@ -13,10 +13,51 @@ Esto incluye:
 
 ## Cómo contribuir
 
-1. **Clona el repositorio** y crea una rama desde `main`.
-2. Realiza tus cambios de manera clara y documentada.
-3. Asegúrate de que el código compila y pasa todas las pruebas (si existen).
-4. Envía un Pull Request con una descripción clara de lo que haces y por qué.
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/rafex/curp-generator.git
+   cd curp-generator
+   ```
+2. **Sincroniza ramas principales**:
+   ```bash
+   git fetch origin
+   git checkout develop
+   git pull origin develop
+   ```
+3. **Crea una rama de feature o hotfix**:
+   - Para nuevas funcionalidades:
+     ```bash
+     git checkout -b feature/mi-nueva-funcionalidad develop
+     ```
+   - Para correcciones urgentes:
+     ```bash
+     git checkout -b hotfix/descripcion-correccion main
+     ```
+4. **Realiza cambios** en tu rama. Asegúrate de:
+   - Cumplir el estilo de código del proyecto.
+   - Agregar pruebas o ejemplos si corresponde.
+5. **Confirma y sube tus commits**:
+   ```bash
+   git add .
+   git commit -m "feature: descripción breve"
+   git push origin nombre-de-tu-rama
+   ```
+6. **Abre un Pull Request**:
+   - Dirige el PR hacia `develop` (o `main` si es un hotfix).
+   - Describe los cambios y referencia issues relacionados.
+7. **Espera revisiones**:
+   - Solicita al menos 1–2 aprobaciones.
+   - Resuelve todas las conversaciones.
+   - Asegúrate de que los checks de CI pasen.
+8. **Merge y etiquetas**:
+   - Una vez aprobado, integra tu rama usando el merge method permitido (squash o rebase).
+   - Para releases, crea un tag en `main`:
+     ```bash
+     git checkout main
+     git pull origin main
+     git tag vX.Y.Z
+     git push origin main --tags
+     ```
 
 ## Buenas prácticas
 
@@ -45,7 +86,7 @@ Además, se utiliza un sistema de etiquetas (*tags*) para versionado, siguiendo 
 ```
                Gitflow
 ╔══════════╗     ╔══════════╗
-║  Feature ║───▶║  Develop ║
+║  Feature ║──-─▶║  Develop ║
 ╚══════════╝    ╱╚══════════╝
                ╱     │
 ╔══════════╗   ╱     ▼
